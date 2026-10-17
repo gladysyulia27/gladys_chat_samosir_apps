@@ -298,10 +298,10 @@ export default function CamplyMapSearch({ products, onSelectProduct }: CamplyMap
 						{/* Floating Search Pill Bar matching Image 3 */}
 						<form
 							onSubmit={handleBooking}
-							className="p-3 sm:p-4 rounded-3xl bg-white dark:bg-[#181a2b] border border-neutral-200/80 dark:border-neutral-700 shadow-xl shadow-slate-200/50 dark:shadow-none flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
+							className="grid grid-cols-1 gap-3 rounded-3xl border border-neutral-200/80 bg-white p-3 shadow-xl shadow-slate-200/50 dark:border-neutral-700 dark:bg-[#181a2b] dark:shadow-none sm:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1fr)_auto] sm:items-center sm:p-4"
 						>
 							{/* Location Input / Dropdown */}
-							<div className="flex-1 flex items-center gap-3 px-3 py-1 sm:border-r border-neutral-200 dark:border-neutral-700">
+							<div className="flex min-w-0 items-center gap-3 px-3 py-1 sm:border-r sm:border-neutral-200 dark:sm:border-neutral-700">
 								<div className="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-950/40 text-[#ff7043] flex items-center justify-center flex-shrink-0">
 									<svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2">
 										<path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
@@ -311,7 +311,7 @@ export default function CamplyMapSearch({ products, onSelectProduct }: CamplyMap
 								<div className="text-left min-w-0">
 									<label
 										htmlFor="search-location-select"
-										className="text-[10px] uppercase font-bold text-neutral-400 block tracking-wider"
+										className="block whitespace-nowrap text-[10px] font-bold uppercase tracking-wider text-neutral-400"
 									>
 										Location
 									</label>
@@ -327,7 +327,7 @@ export default function CamplyMapSearch({ products, onSelectProduct }: CamplyMap
 												setSelectedLocation(val);
 											}
 										}}
-										className="text-xs font-bold text-[#11162b] dark:text-white bg-transparent outline-none w-full cursor-pointer truncate"
+										className="w-full min-w-0 cursor-pointer truncate bg-transparent text-xs font-bold text-[#11162b] outline-none dark:text-white"
 									>
 										{allLocations.map((loc) => (
 											<option key={loc.id} value={loc.name} className="dark:bg-neutral-800">
@@ -339,7 +339,7 @@ export default function CamplyMapSearch({ products, onSelectProduct }: CamplyMap
 							</div>
 
 							{/* Date Input */}
-							<div className="flex-1 flex items-center gap-3 px-3 py-1">
+							<div className="flex min-w-0 items-center gap-3 px-3 py-1">
 								<div className="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-950/40 text-[#ff7043] flex items-center justify-center flex-shrink-0">
 									<svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2">
 										<rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -351,7 +351,7 @@ export default function CamplyMapSearch({ products, onSelectProduct }: CamplyMap
 								<div className="text-left min-w-0">
 									<label
 										htmlFor="search-date-input"
-										className="text-[10px] uppercase font-bold text-neutral-400 block tracking-wider"
+										className="block whitespace-nowrap text-[10px] font-bold uppercase tracking-wider text-neutral-400"
 									>
 										Date
 									</label>
@@ -362,13 +362,13 @@ export default function CamplyMapSearch({ products, onSelectProduct }: CamplyMap
 										onChange={(e) => setSelectedDate(e.target.value)}
 										required
 										aria-label="Pilih tanggal booking"
-										className="text-xs font-bold text-[#11162b] dark:text-white bg-transparent outline-none w-full"
+										className="w-full min-w-0 bg-transparent text-xs font-bold text-[#11162b] outline-none dark:text-white"
 									/>
 								</div>
 							</div>
 
 							{/* Time Input */}
-							<div className="flex-1 flex items-center gap-3 px-3 py-1 sm:border-r border-neutral-200 dark:border-neutral-700">
+							<div className="flex min-w-0 items-center gap-3 px-3 py-1 sm:border-r sm:border-neutral-200 dark:sm:border-neutral-700">
 								<div className="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-950/40 text-[#ff7043] flex items-center justify-center flex-shrink-0">
 									<svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2">
 										<circle cx="12" cy="12" r="9" />
@@ -378,7 +378,7 @@ export default function CamplyMapSearch({ products, onSelectProduct }: CamplyMap
 								<div className="text-left min-w-0">
 									<label
 										htmlFor="search-time-input"
-										className="text-[10px] uppercase font-bold text-neutral-400 block tracking-wider"
+										className="block whitespace-nowrap text-[10px] font-bold uppercase tracking-wider text-neutral-400"
 									>
 										Time
 									</label>
@@ -389,7 +389,7 @@ export default function CamplyMapSearch({ products, onSelectProduct }: CamplyMap
 										onChange={(e) => setSelectedTime(e.target.value)}
 										required
 										aria-label="Pilih jam booking"
-										className="text-xs font-bold text-[#11162b] dark:text-white bg-transparent outline-none w-full"
+										className="w-full min-w-0 bg-transparent text-xs font-bold text-[#11162b] outline-none dark:text-white"
 									/>
 								</div>
 							</div>
@@ -398,7 +398,7 @@ export default function CamplyMapSearch({ products, onSelectProduct }: CamplyMap
 							<button
 								type="submit"
 								aria-label="Book Now via WhatsApp"
-								className="w-12 h-12 rounded-full bg-[#11162b] hover:bg-[#202747] text-white flex items-center justify-center shadow-md flex-shrink-0 cursor-pointer self-center transition-transform hover:scale-105"
+								className="flex h-12 w-12 flex-shrink-0 cursor-pointer items-center justify-center self-center rounded-full bg-[#11162b] text-white shadow-md transition-transform hover:scale-105 hover:bg-[#202747]"
 							>
 								<svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current stroke-2">
 									<circle cx="11" cy="11" r="8" />
