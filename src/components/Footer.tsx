@@ -80,7 +80,7 @@ export default function Footer() {
 							</svg>
 							<span className="text-sm font-bold tracking-tight">Camply.</span>
 						</Link>
-						<p className="mt-5 max-w-[220px] text-xs leading-5 text-blue-100">
+						<p className="mt-5 max-w-[220px] text-xs leading-5 text-white">
 							We always make our customer happy by providing as many choices as possible.
 						</p>
 					</div>
@@ -93,7 +93,7 @@ export default function Footer() {
 									<li key={link.label}>
 										<a
 											href={link.href}
-											className="text-xs text-blue-100 no-underline transition-colors hover:text-white"
+											className="text-xs text-white no-underline transition-colors hover:text-white/80"
 										>
 											{link.label}
 										</a>
@@ -107,7 +107,7 @@ export default function Footer() {
 						<h2 className="text-xs font-bold text-white">Contact Info</h2>
 						<a
 							href="mailto:camply@gmail.com"
-							className="mt-5 block text-xs text-blue-100 no-underline transition-colors hover:text-white"
+							className="mt-5 block text-xs text-white no-underline transition-colors hover:text-white/80"
 						>
 							camply@gmail.com
 						</a>
@@ -128,7 +128,7 @@ export default function Footer() {
 					</div>
 				</div>
 
-				<div className="mt-10 border-t border-blue-400/40 pt-4 text-center text-[11px] text-blue-100">
+				<div className="mt-10 border-t border-white/30 pt-4 text-center text-[11px] text-white">
 					Copyright © {year} Camply. All rights reserved.
 				</div>
 			</div>
