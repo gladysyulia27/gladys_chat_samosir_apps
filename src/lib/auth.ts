@@ -11,6 +11,27 @@ const authBaseURL = (configuredBaseURL ?? "http://localhost:3000")
 	.replace(/\/$/, "");
 const authSecret = process.env.BETTER_AUTH_SECRET ?? "camply-local-development-secret-change-me";
 
+const normalizeOrigin = (value?: string) => {
+	const trimmed = value?.trim();
+	if (!trimmed) return undefined;
+
+	const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+	return withProtocol.replace(/\/$/, "");
+};
+
+const vercelOrigins = [
+	process.env.VERCEL_URL,
+	process.env.VERCEL_BRANCH_URL,
+	process.env.VERCEL_PROJECT_PRODUCTION_URL,
+]
+	.map(normalizeOrigin)
+	.filter((origin): origin is string => Boolean(origin));
+
+const configuredTrustedOrigins = (process.env.BETTER_AUTH_TRUSTED_ORIGINS ?? "")
+	.split(",")
+	.map(normalizeOrigin)
+	.filter((origin): origin is string => Boolean(origin));
+
 try {
 	new URL(authBaseURL);
 } catch {
@@ -25,10 +46,14 @@ export const auth = betterAuth({
 	database: adapter,
 	baseURL: authBaseURL,
 	secret: authSecret,
-	trustedOrigins: [
-		authBaseURL,
-		...(isProduction ? [] : ["http://localhost:*", "http://127.0.0.1:*", "http://[::1]:*"]),
-	],
+	trustedOrigins: Array.from(
+		new Set([
+			authBaseURL,
+			...vercelOrigins,
+			...configuredTrustedOrigins,
+			...(isProduction ? [] : ["http://localhost:*", "http://127.0.0.1:*", "http://[::1]:*"]),
+		]),
+	),
 	user: {
 		additionalFields: {
 			username: {
