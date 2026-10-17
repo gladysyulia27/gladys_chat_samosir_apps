@@ -78,6 +78,8 @@ const memoryDb = {
 		id: string;
 		email: string;
 		name: string | null;
+		username?: string | null;
+		phoneNumber?: string | null;
 		image: string | null;
 		emailVerified: boolean;
 		emailVerifiedAt: Date | null;
@@ -97,6 +99,10 @@ export const db = memoryDb;
 
 export const SEED_ADMIN_EMAIL = "admin@example.com";
 export const SEED_ADMIN_PASSWORD = "admin12345";
+export const SEED_TEST_USERNAME = "test";
+export const SEED_TEST_EMAIL = "test@gmail.com";
+export const SEED_TEST_PASSWORD = "test123!";
+export const SEED_TEST_PHONE = "08123456789";
 
 export function getUserRole(userId: string): Role {
 	return db.userRole.find((r) => r.userId === userId)?.role ?? "user";

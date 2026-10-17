@@ -39,16 +39,16 @@ export default function Header() {
 						Home
 					</Link>
 					<a
-						href="#destinations"
+						href="/about"
 						className="py-1 text-[#667085] dark:text-neutral-400 hover:text-[#11162b] dark:hover:text-white transition-colors"
 					>
 						About
 					</a>
 					<a
-						href="#destinations"
+						href="/#camp-map"
 						className="py-1 text-[#667085] dark:text-neutral-400 hover:text-[#11162b] dark:hover:text-white transition-colors flex items-center gap-1"
 					>
-						Pricing <span className="text-[10px]">▾</span>
+						Book Now
 					</a>
 					<Link
 						to="/contact"
@@ -70,14 +70,6 @@ export default function Header() {
 					>
 						Dashboard
 					</Link>
-					{isAuthenticated && (
-						<a
-							href="/dashboard#destinations-management"
-							className="py-1 text-[#667085] dark:text-neutral-400 hover:text-[#11162b] dark:hover:text-white transition-colors"
-						>
-							Destinations
-						</a>
-					)}
 					{isAdmin && (
 						<Link
 							to="/users"

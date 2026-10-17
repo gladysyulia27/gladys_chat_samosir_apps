@@ -157,9 +157,6 @@ export default function CamplyFAQ() {
 					</div>
 				</div>
 			</div>
-
-			{/* Bottom Blue Stripe matching the bottom of the user's screenshot */}
-			<div className="w-full h-4 bg-[#0b63f6] mt-16 rounded-t-xl" />
 		</section>
 	);
 }

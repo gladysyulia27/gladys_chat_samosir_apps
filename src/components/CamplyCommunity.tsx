@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 export default function CamplyCommunity() {
 	return (
 		<section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0c0f1d] transition-colors relative overflow-hidden">
@@ -30,15 +32,23 @@ export default function CamplyCommunity() {
 						</p>
 
 						<div className="pt-2">
-							<button
-								type="button"
-								onClick={() => {
-									alert("Welcome to the Camply Camper Community!");
-								}}
-								className="px-8 py-3.5 bg-[#11162b] hover:bg-[#222b4d] text-white rounded-full font-semibold text-sm shadow-[0_12px_24px_-6px_rgba(17,22,43,0.35)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+							<Link
+								to="/dashboard"
+								className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#11162b] hover:bg-[#222b4d] text-white rounded-full font-semibold text-sm shadow-[0_12px_24px_-6px_rgba(17,22,43,0.35)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer no-underline group"
 							>
-								Join Community
-							</button>
+								<span>Join Community</span>
+								<svg
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									className="w-4 h-4 transition-transform group-hover:translate-x-1"
+								>
+									<path
+										fillRule="evenodd"
+										d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+										clipRule="evenodd"
+									/>
+								</svg>
+							</Link>
 						</div>
 					</div>
 

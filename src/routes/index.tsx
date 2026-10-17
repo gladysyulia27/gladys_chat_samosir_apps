@@ -24,7 +24,7 @@ function Home() {
 	const products = productsQuery.data ?? [];
 
 	const scrollToSearch = () => {
-		const el = document.getElementById("destinations");
+		const el = document.getElementById("camp-map");
 		if (el) {
 			el.scrollIntoView({ behavior: "smooth" });
 		}

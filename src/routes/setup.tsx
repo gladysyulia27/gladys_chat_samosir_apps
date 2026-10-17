@@ -19,8 +19,8 @@ function Setup() {
 			setStatus("success");
 			setMessage(
 				result.alreadySeeded
-					? "Admin account already exists."
-					: "Admin account seeded. Sign in at /demo/better-auth with admin@example.com / admin12345",
+					? "Seed accounts already exist."
+					: "Seeded admin and test accounts. Test login: test@gmail.com / test123!",
 			);
 		} catch (err) {
 			setStatus("error");
@@ -33,7 +33,7 @@ function Setup() {
 			<section className="island-shell rounded-2xl p-6 sm:p-8">
 				<p className="island-kicker mb-2">Setup</p>
 				<h1 className="display-title mb-3 text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
-					Seed Admin Account
+					Seed Admin + Test Account
 				</h1>
 				<p className="m-0 max-w-2xl text-base leading-8 text-[var(--sea-ink-soft)]">
 					This creates the administrator account (password is hashed by Better Auth) and seeds
@@ -47,7 +47,7 @@ function Setup() {
 						disabled={status === "loading"}
 						className="rounded-xl border border-[var(--line)] bg-[var(--chip-bg)] px-5 py-3 text-sm font-semibold text-[var(--sea-ink)] no-underline transition hover:bg-[var(--link-bg-hover)] disabled:opacity-50"
 					>
-						{status === "loading" ? "Seeding..." : "Seed Admin Account"}
+						{status === "loading" ? "Seeding..." : "Seed Accounts"}
 					</button>
 
 					{status !== "idle" && (

@@ -1,7 +1,15 @@
 import { createServerFn } from "@tanstack/react-start";
 
 import { auth } from "@/lib/auth";
-import { SEED_ADMIN_EMAIL, SEED_ADMIN_PASSWORD, db } from "@/lib/db";
+import {
+	SEED_ADMIN_EMAIL,
+	SEED_ADMIN_PASSWORD,
+	SEED_TEST_EMAIL,
+	SEED_TEST_PASSWORD,
+	SEED_TEST_PHONE,
+	SEED_TEST_USERNAME,
+	db,
+} from "@/lib/db";
 import { getCurrentSession } from "@/lib/session";
 
 /**
@@ -24,18 +32,19 @@ export const seedAdmin = createServerFn({ method: "POST" }).handler(async () => 
 		const role = db.userRole.find((r) => r.userId === u.id)?.role;
 		return role === "admin";
 	});
-	if (hasAdmin) {
-		return { ok: true, alreadySeeded: true, admin: SEED_ADMIN_EMAIL };
-	}
+	const hasTestUser = db.user.some((u) => u.email === SEED_TEST_EMAIL);
+	const existingAdminUser = db.user.find((u) => u.email === SEED_ADMIN_EMAIL);
 
-	await auth.api.signUpEmail({
-		body: {
-			email: SEED_ADMIN_EMAIL,
-			password: SEED_ADMIN_PASSWORD,
-			name: "Administrator",
-		},
-		headers: new Headers(),
-	});
+	if (!existingAdminUser) {
+		await auth.api.signUpEmail({
+			body: {
+				email: SEED_ADMIN_EMAIL,
+				password: SEED_ADMIN_PASSWORD,
+				name: "Administrator",
+			},
+			headers: new Headers(),
+		});
+	}
 
 	const adminUser = db.user.find((u) => u.email === SEED_ADMIN_EMAIL);
 	if (adminUser) {
@@ -45,6 +54,19 @@ export const seedAdmin = createServerFn({ method: "POST" }).handler(async () => 
 		} else {
 			db.userRole.push({ userId: adminUser.id, role: "admin" });
 		}
+	}
+
+	if (!hasTestUser) {
+		await auth.api.signUpEmail({
+			body: {
+				email: SEED_TEST_EMAIL,
+				password: SEED_TEST_PASSWORD,
+				name: SEED_TEST_USERNAME,
+				username: SEED_TEST_USERNAME,
+				phoneNumber: SEED_TEST_PHONE,
+			},
+			headers: new Headers(),
+		});
 	}
 
 	const now = new Date().toISOString();
@@ -87,5 +109,10 @@ export const seedAdmin = createServerFn({ method: "POST" }).handler(async () => 
 		db.product.push(...defaultCamps);
 	}
 
-	return { ok: true, alreadySeeded: false, admin: SEED_ADMIN_EMAIL };
+	return {
+		ok: true,
+		alreadySeeded: hasAdmin && hasTestUser,
+		admin: SEED_ADMIN_EMAIL,
+		testUser: SEED_TEST_EMAIL,
+	};
 });

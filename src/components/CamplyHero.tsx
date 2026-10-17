@@ -1,5 +1,3 @@
-import { Link } from "@tanstack/react-router";
-
 export default function CamplyHero({
 	isAdmin,
 	userEmail,
@@ -86,22 +84,6 @@ export default function CamplyHero({
 							>
 								Get Started
 							</button>
-
-							{isAdmin ? (
-								<Link
-									to="/products/new"
-									className="px-6 py-3.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-[#11162b] dark:text-white text-sm font-semibold hover:bg-neutral-50 dark:hover:bg-neutral-700 shadow-sm transition-all"
-								>
-									+ Add Destination
-								</Link>
-							) : (
-								<a
-									href="#destinations"
-									className="text-sm font-semibold text-[#0b63f6] hover:underline underline-offset-4 flex items-center gap-1.5"
-								>
-									Explore Destinations &rarr;
-								</a>
-							)}
 						</div>
 
 						{/* User Status Badge */}
