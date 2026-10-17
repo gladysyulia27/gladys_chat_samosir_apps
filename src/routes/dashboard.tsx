@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
 import CamplyMapSearch from "@/components/CamplyMapSearch";
+import ScrollReveal from "@/components/ScrollReveal";
 
 import { getServerSession } from "@/lib/server/auth";
 import { getProducts } from "@/lib/server/products";
@@ -32,7 +33,9 @@ function Dashboard() {
 		<main className="w-full min-h-screen bg-white dark:bg-[#0a0d18] transition-colors">
 			{/* Dashboard: map and destination choices only */}
 			<div id="camp-map">
-				<CamplyMapSearch products={products} />
+				<ScrollReveal>
+					<CamplyMapSearch products={products} />
+				</ScrollReveal>
 			</div>
 		</main>
 	);

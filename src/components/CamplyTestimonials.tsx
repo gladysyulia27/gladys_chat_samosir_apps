@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { type TouchEvent, useRef, useState } from "react";
 
 const TESTIMONIALS = [
 	{
@@ -41,6 +41,7 @@ const TESTIMONIALS = [
 
 export default function CamplyTestimonials() {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const touchStartX = useRef<number | null>(null);
 
 	const handlePrev = () => {
 		setCurrentIndex((prev) => (prev === 0 ? TESTIMONIALS.length - 1 : prev - 1));
@@ -48,6 +49,20 @@ export default function CamplyTestimonials() {
 
 	const handleNext = () => {
 		setCurrentIndex((prev) => (prev === TESTIMONIALS.length - 1 ? 0 : prev + 1));
+	};
+
+	const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+		touchStartX.current = event.changedTouches[0]?.clientX ?? null;
+	};
+
+	const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+		if (touchStartX.current === null) return;
+
+		const distance = event.changedTouches[0]?.clientX - touchStartX.current;
+		touchStartX.current = null;
+		if (!distance || Math.abs(distance) < 45) return;
+		if (distance < 0) handleNext();
+		else handlePrev();
 	};
 
 	// Rotate cards based on currentIndex
@@ -100,11 +115,15 @@ export default function CamplyTestimonials() {
 				</div>
 
 				{/* Testimonial Cards Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+				<div
+					onTouchStart={handleTouchStart}
+					onTouchEnd={handleTouchEnd}
+					className="scrollbar-none flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 touch-pan-x md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0 lg:grid-cols-4"
+				>
 					{displayedTestimonials.map((item) => (
 						<div
 							key={item.id}
-							className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#161a2c] border border-neutral-100 dark:border-neutral-800 shadow-md shadow-slate-100 dark:shadow-none flex flex-col justify-between text-left space-y-6 hover:-translate-y-1 transition-transform"
+							className="min-w-[85vw] snap-center p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#161a2c] border border-neutral-100 dark:border-neutral-800 shadow-md shadow-slate-100 dark:shadow-none flex flex-col justify-between text-left space-y-6 hover:-translate-y-1 transition-transform md:min-w-0"
 						>
 							<div className="space-y-4">
 								{/* Blue Quotation Mark Icon */}
