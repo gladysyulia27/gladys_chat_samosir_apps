@@ -45,7 +45,10 @@ export default function CamplyFAQ() {
 	};
 
 	return (
-		<section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-[#fcfdff] to-white dark:from-[#0a0d18] dark:via-[#0f1323] dark:to-[#0a0d18] transition-colors overflow-hidden">
+		<section
+			id="faq"
+			className="relative overflow-hidden bg-gradient-to-b from-white via-[#fcfdff] to-white px-4 py-20 transition-colors dark:from-[#0a0d18] dark:via-[#0f1323] dark:to-[#0a0d18] sm:px-6 lg:px-8"
+		>
 			{/* Decorative Squiggle Doodle (Top Left matching screenshot) */}
 			<div className="absolute top-8 left-4 sm:left-12 opacity-35 dark:opacity-20 pointer-events-none">
 				<svg width="120" height="160" viewBox="0 0 120 160" fill="none" className="text-[#9cb3db]">

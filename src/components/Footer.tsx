@@ -1,41 +1,136 @@
+import { Link } from "@tanstack/react-router";
+
+const footerColumns = [
+	{
+		title: "Company",
+		links: [
+			{ label: "About Us", href: "/about" },
+			{ label: "Features", href: "/#camp-map" },
+			{ label: "News", href: "/" },
+			{ label: "FAQ", href: "/#faq" },
+		],
+	},
+	{
+		title: "Resources",
+		links: [
+			{ label: "Events", href: "/#camp-map" },
+			{ label: "Promo", href: "/#camp-map" },
+			{ label: "Req Demo", href: "/contact" },
+		],
+	},
+	{
+		title: "Support",
+		links: [
+			{ label: "Account", href: "/demo/better-auth" },
+			{ label: "Support Center", href: "/contact" },
+			{ label: "Feedback", href: "/contact" },
+			{ label: "Contact Us", href: "/contact" },
+			{ label: "Accessibility", href: "/contact" },
+		],
+	},
+] as const;
+
+const socialLinks = [
+	{ label: "Instagram", href: "https://instagram.com", icon: "instagram" },
+	{ label: "Facebook", href: "https://facebook.com", icon: "facebook" },
+	{ label: "Twitter", href: "https://x.com", icon: "twitter" },
+] as const;
+
+function SocialIcon({ name }: { name: (typeof socialLinks)[number]["icon"] }) {
+	if (name === "instagram") {
+		return (
+			<svg
+				viewBox="0 0 24 24"
+				aria-hidden="true"
+				className="h-4 w-4 fill-none stroke-current stroke-2"
+			>
+				<rect x="3" y="3" width="18" height="18" rx="5" />
+				<circle cx="12" cy="12" r="4" />
+				<circle cx="17.5" cy="6.5" r="1" className="fill-current stroke-none" />
+			</svg>
+		);
+	}
+
+	if (name === "facebook") {
+		return (
+			<svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+				<path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.7-1.6h1.8V3.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H8v3h2.6v8h2.9Z" />
+			</svg>
+		);
+	}
+
+	return (
+		<svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+			<path d="M18.2 3H21l-6.1 7 7.2 11h-5.6l-4.4-6.7L6.2 21H3.4l6.5-7.5L3 3h5.7l4 6.1L18.2 3Zm-1 16h1.6L8.7 4.9H7L17.2 19Z" />
+		</svg>
+	);
+}
+
 export default function Footer() {
 	const year = new Date().getFullYear();
 
 	return (
-		<footer className="mt-20 border-t border-[var(--line)] px-4 pb-14 pt-10 text-[var(--sea-ink-soft)]">
-			<div className="page-wrap flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-				<p className="m-0 text-sm">&copy; {year} Your name here. All rights reserved.</p>
-				<p className="island-kicker m-0">Built with TanStack Start</p>
-			</div>
-			<div className="mt-4 flex justify-center gap-4">
-				<a
-					href="https://x.com/tan_stack"
-					target="_blank"
-					rel="noreferrer"
-					className="rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
-				>
-					<span className="sr-only">Follow TanStack on X</span>
-					<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
-						<path
-							fill="currentColor"
-							d="M12.6 1h2.2L10 6.48 15.64 15h-4.41L7.78 9.82 3.23 15H1l5.14-5.84L.72 1h4.52l3.12 4.73L12.6 1zm-.77 12.67h1.22L4.57 2.26H3.26l8.57 11.41z"
-						/>
-					</svg>
-				</a>
-				<a
-					href="https://github.com/TanStack"
-					target="_blank"
-					rel="noreferrer"
-					className="rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
-				>
-					<span className="sr-only">Go to TanStack GitHub</span>
-					<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
-						<path
-							fill="currentColor"
-							d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-						/>
-					</svg>
-				</a>
+		<footer className="bg-[#0759c9] px-6 pb-6 pt-12 text-white sm:px-10 lg:px-14">
+			<div className="mx-auto max-w-7xl">
+				<div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.8fr_0.9fr_1fr] lg:gap-12">
+					<div className="max-w-xs text-left">
+						<Link to="/" className="inline-flex items-center gap-2 text-white no-underline">
+							<svg viewBox="0 0 36 36" aria-hidden="true" className="h-7 w-7 fill-current">
+								<path d="M18 4C9 4 3 13 3 24c0 5 3 8 7 8 2.5 0 4.5-4 5.5-9 1-5.5 4-5.5 5 0 1 5 3 9 5.5 9 4 0 7-3 7-8 0-11-6-20-15-20Z" />
+							</svg>
+							<span className="text-sm font-bold tracking-tight">Camply.</span>
+						</Link>
+						<p className="mt-5 max-w-[220px] text-xs leading-5 text-blue-100">
+							We always make our customer happy by providing as many choices as possible.
+						</p>
+					</div>
+
+					{footerColumns.map((column) => (
+						<div key={column.title} className="text-left">
+							<h2 className="text-xs font-bold text-white">{column.title}</h2>
+							<ul className="mt-5 space-y-2.5">
+								{column.links.map((link) => (
+									<li key={link.label}>
+										<a
+											href={link.href}
+											className="text-xs text-blue-100 no-underline transition-colors hover:text-white"
+										>
+											{link.label}
+										</a>
+									</li>
+								))}
+							</ul>
+						</div>
+					))}
+
+					<div className="text-left">
+						<h2 className="text-xs font-bold text-white">Contact Info</h2>
+						<a
+							href="mailto:camply@gmail.com"
+							className="mt-5 block text-xs text-blue-100 no-underline transition-colors hover:text-white"
+						>
+							camply@gmail.com
+						</a>
+						<div className="mt-4 flex items-center gap-2">
+							{socialLinks.map((social) => (
+								<a
+									key={social.label}
+									href={social.href}
+									target="_blank"
+									rel="noreferrer"
+									aria-label={social.label}
+									className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#0759c9] transition-transform hover:-translate-y-0.5 hover:bg-blue-100"
+								>
+									<SocialIcon name={social.icon} />
+								</a>
+							))}
+						</div>
+					</div>
+				</div>
+
+				<div className="mt-10 border-t border-blue-400/40 pt-4 text-center text-[11px] text-blue-100">
+					Copyright © {year} Camply. All rights reserved.
+				</div>
 			</div>
 		</footer>
 	);
